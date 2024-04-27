@@ -10,14 +10,14 @@ export interface EditorFile {
   language: string
 }
 
-interface Props {
+export interface CEditorProps {
   file: EditorFile
   onChange?: EditorProps['onChange']
   options?: editor.IStandaloneEditorConstructionOptions
 }
 
 
-export default function Editor(props: Props) {
+export default function Editor(props: CEditorProps) {
   const { file, onChange, options } = props
 
   const code = `export default function App() {

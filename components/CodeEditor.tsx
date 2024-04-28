@@ -5,7 +5,8 @@ import Editor, { CEditorProps } from './Editor'
 export default function CodeEditor() {
   const file = {
     name: 'guang.tsx',
-    value: 'import lodash from "lodash";\n\nconst a = <div>guang</div>',
+    // value: 'import lodash from "lodash";\n\nconst a = <div>Hello world</div>',
+    value: 'const a = <div>Hello world</div>',
     language: 'typescript'
   }
 

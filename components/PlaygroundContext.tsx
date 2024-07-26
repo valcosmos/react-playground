@@ -1,8 +1,9 @@
 'use client'
 import { createContext } from "react"
+import { CEditorProps } from "./Editor"
 
 export interface Files {
-  [key: string]: File
+  [key: string]: CEditorProps['file']
 }
 
 export interface PlaygroundContext {

@@ -1,8 +1,9 @@
 'use client'
-import { createATA } from '@/utils/ata'
-import { editor } from 'monaco-editor'
+import type { editor } from 'monaco-editor'
 
-import MonacoEditor, { EditorProps, OnMount } from '@monaco-editor/react'
+import type { EditorProps, OnMount } from '@monaco-editor/react'
+import MonacoEditor from '@monaco-editor/react'
+import { createATA } from '@/utils/ata'
 
 export interface EditorFile {
   name: string
@@ -15,7 +16,6 @@ export interface CEditorProps {
   onChange?: EditorProps['onChange']
   options?: editor.IStandaloneEditorConstructionOptions
 }
-
 
 export default function Editor(props: CEditorProps) {
   const { file, onChange, options } = props
@@ -34,7 +34,7 @@ export default function Editor(props: CEditorProps) {
 
     monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
       jsx: monaco.languages.typescript.JsxEmit.Preserve,
-      esModuleInterop: true
+      esModuleInterop: true,
     })
 
     const ata = createATA((code, path) => {
@@ -49,7 +49,7 @@ export default function Editor(props: CEditorProps) {
   }
   return (
     <MonacoEditor
-      height={'100%'}
+      height="100%"
       path={file.name}
       language={file.language}
       onMount={handleEditorMount}
@@ -59,13 +59,13 @@ export default function Editor(props: CEditorProps) {
         fontSize: 14,
         scrollBeyondLastLine: false,
         minimap: {
-          enabled: false
+          enabled: false,
         },
         scrollbar: {
           verticalScrollbarSize: 6,
-          horizontalScrollbarSize: 6
+          horizontalScrollbarSize: 6,
         },
-        ...options
+        ...options,
       }}
     />
   )

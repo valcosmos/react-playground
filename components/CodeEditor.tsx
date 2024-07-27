@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import FileNameList from './FileNameList'
-import Editor, { CEditorProps } from './Editor'
-import { PlaygroundContext } from './PlaygroundContext'
 import { debounce } from 'es-toolkit'
+import FileNameList from './FileNameList'
+import type { CEditorProps } from './Editor'
+import Editor from './Editor'
+import { PlaygroundContext } from './PlaygroundContext'
 
 export default function CodeEditor() {
   // const file = {
@@ -14,7 +15,8 @@ export default function CodeEditor() {
 
   const { files, setFiles, selectedFileName, setSelectedFileName } = useContext(PlaygroundContext)
 
-  if (!files) return
+  if (!files)
+    return
 
   const file = files[selectedFileName]
 

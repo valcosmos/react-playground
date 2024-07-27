@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 
-
-import styles from './index.module.scss'
 import { PlaygroundContext } from './PlaygroundContext'
 import { FileNameItem } from './FileNameItem'
 
 export default function FileNameList() {
-  const { files, removeFile, addFile, updateFileName, selectedFileName, setSelectedFileName } =
-    useContext(PlaygroundContext)
+  const { files, removeFile, addFile, updateFileName, selectedFileName, setSelectedFileName }
+    = useContext(PlaygroundContext)
 
   const [tabs, setTabs] = useState([''])
 
@@ -16,14 +14,15 @@ export default function FileNameList() {
   }, [files])
 
   return (
-    <div className='flex items-center h-9 overflow-auto border-b border-gray-600 bg-white'>
+    <div className="flex items-center h-9 overflow-auto border-b border-gray-600 bg-white">
       {tabs.map((item, index) => (
         <FileNameItem
           key={item + index}
           value={item}
           actived={selectedFileName === item}
           onClick={() => setSelectedFileName?.(item)}
-        ></FileNameItem>
+        >
+        </FileNameItem>
       ))}
     </div>
   )

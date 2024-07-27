@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 
 export interface FileNameItemProps {
   value: string
@@ -14,7 +14,7 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
   // className={classnames(styles['tab-item'], actived ? styles.actived : null)}
   return (
     <div
-      className={'inline-flex py-1.5 px-2.5 text-xs cursor-pointer items-center text-gray-600 ' + `${actived?'border-b !text-blue-600 border-blue-600':''}`}
+      className={'inline-flex py-1.5 px-2.5 text-xs cursor-pointer items-center text-gray-600 ' + `${actived ? 'border-b !text-blue-600 border-blue-600' : ''}`}
       onClick={onClick}
     >
       <span>{name}</span>

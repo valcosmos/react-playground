@@ -4,4 +4,4 @@ const nextConfig = {
   basePath: '/react-playground',
 }
 
-export default nextConfig;
+export default nextConfig

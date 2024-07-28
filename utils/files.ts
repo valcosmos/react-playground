@@ -4,7 +4,7 @@
 // import main from '../template/main.tsx?raw'
 import { fileName2Language } from './utils'
 import { main } from '@/template/main'
-import type { Files } from '@/components/PlaygroundContext'
+import type { Files } from '@/components/feature/PlaygroundContext'
 import { app } from '@/template/app'
 import { css } from '@/template/css'
 import { map } from '@/template/map'

@@ -1,5 +1,3 @@
-'use client'
-
 import { useContext, useEffect, useState } from 'react'
 import { PlaygroundContext } from '../PlaygroundContext'
 // import Editor from '../Editor'

@@ -1,4 +1,3 @@
-'use client'
 import type { editor } from 'monaco-editor'
 
 import type { EditorProps, OnMount } from '@monaco-editor/react'

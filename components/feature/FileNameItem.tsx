@@ -1,5 +1,3 @@
-'use client'
-
 import type { MouseEventHandler } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'

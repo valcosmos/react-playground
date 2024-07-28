@@ -2,7 +2,7 @@
 
 import { useContext, useEffect, useState } from 'react'
 import { PlaygroundContext } from '../PlaygroundContext'
-import Editor from '../Editor'
+// import Editor from '../Editor'
 import { compile } from './compiler'
 import { iframeStr } from './iframe'
 import { IMPORT_MAP_FILE_NAME } from '@/utils/files'
@@ -48,6 +48,8 @@ export default function Preview() {
           padding: 0,
           border: 'none',
         }}
+        // eslint-disable-next-line react-dom/no-unsafe-iframe-sandbox
+        sandbox="allow-scripts allow-same-origin"
       />
       {/* <Editor file={{
             name: 'dist.js',

@@ -13,7 +13,7 @@ export default function CodeEditor() {
   //   language: 'typescript'
   // }
 
-  const { files, setFiles, selectedFileName, setSelectedFileName } = useContext(PlaygroundContext)
+  const { files, setFiles, selectedFileName } = useContext(PlaygroundContext)
 
   if (!files)
     return
@@ -22,7 +22,9 @@ export default function CodeEditor() {
 
   const onEditorChange: CEditorProps['onChange'] = (value?: string) => {
     files[file.name].value = value!
-    setFiles && setFiles({ ...files })
+    if (setFiles) {
+      setFiles({ ...files })
+    }
   }
 
   return (

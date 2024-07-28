@@ -1,7 +1,7 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { Files } from './PlaygroundContext'
 import { PlaygroundContext } from './PlaygroundContext'
 import { fileName2Language } from '@/utils/utils'
@@ -43,19 +43,15 @@ export function PlaygroundProvider(props: PropsWithChildren) {
     })
   }
 
-  return (
-    <PlaygroundContext.Provider
-      value={{
-        files,
-        selectedFileName,
-        setSelectedFileName,
-        setFiles,
-        addFile,
-        removeFile,
-        updateFileName,
-      }}
-    >
-      {children}
-    </PlaygroundContext.Provider>
-  )
+  const ctxValue = useMemo(() => ({
+    files,
+    selectedFileName,
+    setSelectedFileName,
+    setFiles,
+    addFile,
+    removeFile,
+    updateFileName,
+  }), [files, selectedFileName, setSelectedFileName, setFiles, addFile, removeFile, updateFileName])
+
+  return <PlaygroundContext.Provider value={ctxValue}>{children}</PlaygroundContext.Provider>
 }

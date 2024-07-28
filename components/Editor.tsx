@@ -20,10 +20,10 @@ export interface CEditorProps {
 export default function Editor(props: CEditorProps) {
   const { file, onChange, options } = props
 
-  const code = `export default function App() {
-    return <div>xxx</div>
-    }
-    `
+  // const code = `export default function App() {
+  //   return <div>xxx</div>
+  //   }
+  //   `
   const handleEditorMount: OnMount = (editor, monaco) => {
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyJ, () => {
       editor.getAction('editor.action.formatDocument')?.run()

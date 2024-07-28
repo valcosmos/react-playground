@@ -2,7 +2,6 @@
 
 import { Allotment } from 'allotment'
 import 'allotment/dist/style.css'
-import dynamic from 'next/dynamic'
 import Header from './Header'
 import CodeEditor from './CodeEditor'
 

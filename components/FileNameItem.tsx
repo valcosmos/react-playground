@@ -1,23 +1,24 @@
-import React, { useState } from 'react'
-
 export interface FileNameItemProps {
   value: string
-  actived: boolean
+  isCurrent: boolean
   onClick: () => void
 }
 
 export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
-  const { value, actived = false, onClick } = props
+  const { value, isCurrent = false, onClick } = props
 
-  const [name, setName] = useState(value)
+  // const [name, setName] = useState(value)
 
-  // className={classnames(styles['tab-item'], actived ? styles.actived : null)}
+  // className={classnames(styles['tab-item'], isCurrent ? styles.isCurrent : null)}
   return (
     <div
-      className={'inline-flex py-1.5 px-2.5 text-xs cursor-pointer items-center text-gray-600 ' + `${actived ? 'border-b !text-blue-600 border-blue-600' : ''}`}
+      className={
+        'inline-flex py-1.5 px-2.5 text-xs cursor-pointer items-center text-gray-600 '
+        + `${isCurrent ? 'border-b !text-blue-600 border-blue-600' : ''}`
+      }
       onClick={onClick}
     >
-      <span>{name}</span>
+      <span>{value}</span>
     </div>
   )
 }

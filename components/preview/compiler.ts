@@ -1,5 +1,4 @@
 import { transform } from '@babel/standalone'
-import type { PluginItem } from '@babel/core'
 
 import type { Files } from '../PlaygroundContext'
 import type { CEditorProps } from '../Editor'
@@ -27,7 +26,9 @@ export function compile(files: Files) {
   return babelTransform(ENTRY_FILE_NAME, main.value, files)
 }
 
-function customResolver(files: Files): PluginItem {
+type ArrayElementType<T> = T extends (infer U)[] ? U : never
+
+function customResolver(files: Files): ArrayElementType<Parameters<typeof transform>[1]['plugins']> {
   return {
     visitor: {
       ImportDeclaration(path) {

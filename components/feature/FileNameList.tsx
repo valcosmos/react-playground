@@ -64,7 +64,7 @@ export default function FileNameList() {
           }}
         />
       ))}
-      <div className="" onClick={addTab}>
+      <div className="cursor-pointer text-xl" onClick={addTab}>
         +
       </div>
     </div>

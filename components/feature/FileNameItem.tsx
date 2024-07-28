@@ -2,6 +2,8 @@
 
 import type { MouseEventHandler } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { Button } from '../ui/button'
 
 export interface FileNameItemProps {
   value: string
@@ -19,6 +21,8 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
   const [name, setName] = useState(value)
   const [editing, setEditing] = useState(creating)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  const [popoverVisible, setPopoverVisible] = useState(false)
 
   const handleDoubleClick = () => {
     setEditing(true)
@@ -58,17 +62,39 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
           )
         : (
             <>
-              <span onDoubleClick={!readonly ? handleDoubleClick : () => { }}>{name}</span>
-              { !readonly
+              <span onDoubleClick={!readonly ? handleDoubleClick : () => {}}>{name}</span>
+              {!readonly
                 ? (
-                    <span style={{ marginLeft: 5, display: 'flex' }} onClick={onRemove}>
-                      <svg width="12" height="12" viewBox="0 0 24 24">
-                        <line stroke="#999" x1="18" y1="6" x2="6" y2="18"></line>
-                        <line stroke="#999" x1="6" y1="6" x2="18" y2="18"></line>
-                      </svg>
-                    </span>
+                    <Popover open={popoverVisible}>
+                      <PopoverTrigger>
+                        <span className="flex items-center ml-1" onClick={() => setPopoverVisible(true)}>
+                          <svg width="12" height="12" viewBox="0 0 24 24">
+                            <line stroke="#999" x1="18" y1="6" x2="6" y2="18"></line>
+                            <line stroke="#999" x1="6" y1="6" x2="18" y2="18"></line>
+                          </svg>
+                        </span>
+                      </PopoverTrigger>
+                      <PopoverContent className="space-y-4">
+                        <h3 className="text-lg">Confirm to delete the file?</h3>
+                        <footer className="flex justify-end space-x-2">
+                          <Button size="sm" variant="secondary" onClick={() => setPopoverVisible(false)}>
+                            Cancel
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={(e) => {
+                              onRemove(e)
+                              setPopoverVisible(false)
+                            }}
+                          >
+                            Confirm
+                          </Button>
+                        </footer>
+                      </PopoverContent>
+                    </Popover>
                   )
-                : null }
+                : null}
             </>
           )}
     </div>

@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react'
-
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs'
+import { ScrollArea, ScrollBar } from '../ui/scroll-area'
 import { PlaygroundContext } from './PlaygroundContext'
 import { FileNameItem } from './FileNameItem'
 import { APP_COMPONENT_FILE_NAME, ENTRY_FILE_NAME, IMPORT_MAP_FILE_NAME } from '@/utils/files'
 
 export default function FileNameList() {
-  const { files, selectedFileName, addFile, setSelectedFileName, updateFileName, removeFile }
-    = useContext(PlaygroundContext)
+  const { files, selectedFileName, addFile, setSelectedFileName, updateFileName, removeFile } = useContext(PlaygroundContext)
 
   const [tabs, setTabs] = useState([''])
   const [creating, setCreating] = useState(false)
@@ -48,25 +48,36 @@ export default function FileNameList() {
   const readonlyFileNames = [ENTRY_FILE_NAME, IMPORT_MAP_FILE_NAME, APP_COMPONENT_FILE_NAME]
 
   return (
-    <div className="flex items-center h-9 overflow-auto border-b border-gray-600 bg-white">
-      {tabs.map((item, index, arr) => (
-        <FileNameItem
-          key={`${Math.random().toString()}-${item}-${index.toString()}`}
-          value={item}
-          readonly={readonlyFileNames.includes(item)}
-          creating={creating && index === arr.length - 1}
-          isCurrent={selectedFileName === item}
-          onClick={() => setSelectedFileName?.(item)}
-          onEditComplete={name => handleEditComplete(name, item)}
-          onRemove={(e) => {
-            e.stopPropagation()
-            handleRemove(item)
-          }}
-        />
-      ))}
-      <div className="cursor-pointer text-xl" onClick={addTab}>
-        +
-      </div>
-    </div>
+    <ScrollArea>
+      <Tabs>
+        <TabsList>
+          {tabs.map((item, index, arr) => (
+            <TabsTrigger
+              key={`${Math.random().toString()}-${item}-${index.toString()}`}
+              value={item}
+            >
+              <FileNameItem
+                value={item}
+                readonly={readonlyFileNames.includes(item)}
+                creating={creating && index === arr.length - 1}
+                isCurrent={selectedFileName === item}
+                onClick={() => setSelectedFileName?.(item)}
+                onEditComplete={name => handleEditComplete(name, item)}
+                onRemove={(e) => {
+                  e.stopPropagation()
+                  handleRemove(item)
+                }}
+              />
+            </TabsTrigger>
+          ))}
+          <TabsTrigger value="add">
+            <span className="cursor-pointer text-xl" onClick={addTab}>
+              +
+            </span>
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
   )
 }

@@ -41,13 +41,7 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
   }, [creating])
 
   return (
-    <div
-      className={
-        'inline-flex py-1.5 px-2.5 text-xs cursor-pointer items-center text-gray-600 '
-        + `${isCurrent ? 'border-b !text-blue-600 border-blue-600' : ''}`
-      }
-      onClick={onClick}
-    >
+    <span className={`${isCurrent ? 'text-blue-600' : ''}`} onClick={onClick}>
       {editing
         ? (
             <input
@@ -59,12 +53,12 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
             />
           )
         : (
-            <>
+            <span className="flex items-center space-x-2">
               <span onDoubleClick={!readonly ? handleDoubleClick : () => {}}>{name}</span>
               {!readonly
                 ? (
                     <Popover open={popoverVisible}>
-                      <PopoverTrigger>
+                      <PopoverTrigger asChild>
                         <span className="flex items-center ml-1" onClick={() => setPopoverVisible(true)}>
                           <svg width="12" height="12" viewBox="0 0 24 24">
                             <line stroke="#999" x1="18" y1="6" x2="6" y2="18"></line>
@@ -75,26 +69,34 @@ export const FileNameItem: React.FC<FileNameItemProps> = (props) => {
                       <PopoverContent className="space-y-4">
                         <h3 className="text-lg">Confirm to delete the file?</h3>
                         <footer className="flex justify-end space-x-2">
-                          <Button size="sm" variant="secondary" onClick={() => setPopoverVisible(false)}>
-                            Cancel
+                          <Button
+                            asChild
+                            size="sm"
+                            variant="secondary"
+                            className="cursor-pointer"
+                            onClick={() => setPopoverVisible(false)}
+                          >
+                            <span> Cancel</span>
                           </Button>
                           <Button
+                            asChild
                             size="sm"
+                            className="cursor-pointer"
                             variant="destructive"
                             onClick={(e) => {
                               onRemove(e)
                               setPopoverVisible(false)
                             }}
                           >
-                            Confirm
+                            <span>Confirm</span>
                           </Button>
                         </footer>
                       </PopoverContent>
                     </Popover>
                   )
                 : null}
-            </>
+            </span>
           )}
-    </div>
+    </span>
   )
 }

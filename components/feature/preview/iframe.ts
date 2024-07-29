@@ -7,6 +7,13 @@ export const iframeStr = `
   <title>Preview</title>
 </head>
 <body>
+
+<script>
+    window.addEventListener('error', (e) => {
+        window.parent.postMessage({type: 'ERROR', message: e.message})
+    })
+</script>
+
 <script type="importmap"></script>
 <script type="module" id="appSrc"></script>
 <div id="root"></div>

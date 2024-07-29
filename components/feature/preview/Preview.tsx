@@ -1,9 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
 import { PlaygroundContext } from '../PlaygroundContext'
 // import Editor from '../Editor'
+import Message from '../Message'
 import { compile } from './compiler'
 import { iframeStr } from './iframe'
 import { IMPORT_MAP_FILE_NAME } from '@/utils/files'
+
+interface MessageData {
+  data: {
+    type: string
+    message: string
+  }
+}
 
 export default function Preview() {
   const { files } = useContext(PlaygroundContext)
@@ -36,6 +44,22 @@ export default function Preview() {
     }
   }, [files])
 
+  const [error, setError] = useState('')
+
+  const handleMessage = (msg: MessageData) => {
+    const { type, message } = msg.data
+    if (type === 'ERROR') {
+      setError(message)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('message', handleMessage)
+    return () => {
+      window.removeEventListener('message', handleMessage)
+    }
+  }, [])
+
   return (
     <div style={{ height: '100%' }}>
       <iframe
@@ -49,6 +73,7 @@ export default function Preview() {
         // eslint-disable-next-line react-dom/no-unsafe-iframe-sandbox
         sandbox="allow-scripts allow-same-origin"
       />
+      <Message type="error" content={error} />
       {/* <Editor file={{
             name: 'dist.js',
             value: compiledCode,

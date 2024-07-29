@@ -5,8 +5,12 @@ export interface Files {
   [key: string]: CEditorProps['file']
 }
 
+export type Theme = 'light' | 'dark'
+
 export interface PlaygroundContextProps {
   selectedFileName: string
+  theme?: Theme
+  setTheme?: (theme: Theme) => void
   files?: Files
   setSelectedFileName?: (fileName: string) => void
   setFiles?: (files: Files) => void

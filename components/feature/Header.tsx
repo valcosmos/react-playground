@@ -1,12 +1,15 @@
 import Image from 'next/image'
-import { MoonIcon, SunIcon } from 'lucide-react'
+import { DownloadIcon, MoonIcon, Share, SunIcon } from 'lucide-react'
 import { useContext } from 'react'
+import copy from 'copy-to-clipboard'
+import { toast } from 'sonner'
 import logoSvg from '../../icons/logo.svg'
 import { Button } from '../ui/button'
 import { PlaygroundContext } from './PlaygroundContext'
+import { downloadFiles } from '@/utils/utils'
 
 export default function Header() {
-  const { theme, setTheme } = useContext(PlaygroundContext)
+  const { theme, setTheme, files } = useContext(PlaygroundContext)
 
   return (
     <header className="h-12 px-5 border-b border-black flex items-center justify-between">
@@ -40,6 +43,26 @@ export default function Header() {
             <SunIcon />
           </Button>
         )}
+
+        <Button
+          variant="ghost"
+          onClick={() => {
+            copy(window.location.href)
+            toast.success('Link has been copied.')
+          }}
+        >
+          <Share />
+        </Button>
+        <Button
+          variant="ghost"
+          onClick={async () => {
+            if (files)
+              await downloadFiles(files)
+            toast.success('Downloaded.')
+          }}
+        >
+          <DownloadIcon />
+        </Button>
       </div>
     </header>
   )

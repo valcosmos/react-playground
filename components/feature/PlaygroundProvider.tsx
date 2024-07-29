@@ -1,15 +1,38 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { Files, Theme } from './PlaygroundContext'
 import { PlaygroundContext } from './PlaygroundContext'
-import { fileName2Language } from '@/utils/utils'
+import { compress, fileName2Language, uncompress } from '@/utils/utils'
 import { initFiles } from '@/utils/files'
+
+// function getFilesFromUrl() {
+//   let files: Files | undefined
+//   try {
+//     const hash = decodeURIComponent(window.location.hash.slice(1))
+//     files = JSON.parse(hash)
+//   }
+//   catch (error) {
+//     console.error(error)
+//   }
+//   return files
+// }
+function getFilesFromUrl() {
+  let files: Files | undefined
+  try {
+    const hash = uncompress(window.location.hash.slice(1))
+    files = JSON.parse(hash)
+  }
+  catch (error) {
+    console.error(error)
+  }
+  return files
+}
 
 export function PlaygroundProvider(props: PropsWithChildren) {
   const { children } = props
-  const [files, setFiles] = useState<Files>(initFiles)
+  const [files, setFiles] = useState<Files>(getFilesFromUrl() || initFiles)
   const [selectedFileName, setSelectedFileName] = useState('App.tsx')
   const [theme, setTheme] = useState<Theme>('light')
 
@@ -56,6 +79,16 @@ export function PlaygroundProvider(props: PropsWithChildren) {
     updateFileName,
 
   }), [files, selectedFileName, setSelectedFileName, setFiles, addFile, removeFile, updateFileName])
+
+  // useEffect(() => {
+  //   const hash = JSON.stringify(files)
+  //   window.location.hash = encodeURIComponent(hash)
+  // }, [files])
+
+  useEffect(() => {
+    const hash = compress(JSON.stringify(files))
+    window.location.hash = hash
+  }, [files])
 
   return <PlaygroundContext.Provider value={ctxValue}>{children}</PlaygroundContext.Provider>
 }

@@ -26,6 +26,18 @@ export function compile(files: Files) {
   return babelTransform(ENTRY_FILE_NAME, main.value, files)
 }
 
+globalThis.addEventListener('message', async ({ data }) => {
+  try {
+    globalThis.postMessage({
+      type: 'COMPILED_CODE',
+      data: compile(data),
+    })
+  }
+  catch (e) {
+    globalThis.postMessage({ type: 'ERROR', error: e })
+  }
+})
+
 type ArrayElementType<T> = T extends (infer U)[] ? U : never
 
 function customResolver(files: Files): ArrayElementType<Parameters<typeof transform>[1]['plugins']> {

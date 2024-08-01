@@ -7,17 +7,6 @@ import { PlaygroundContext } from './PlaygroundContext'
 import { compress, fileName2Language, uncompress } from '@/utils/utils'
 import { initFiles } from '@/utils/files'
 
-// function getFilesFromUrl() {
-//   let files: Files | undefined
-//   try {
-//     const hash = decodeURIComponent(window.location.hash.slice(1))
-//     files = JSON.parse(hash)
-//   }
-//   catch (error) {
-//     console.error(error)
-//   }
-//   return files
-// }
 function getFilesFromUrl() {
   let files: Files | undefined
   try {
@@ -30,7 +19,7 @@ function getFilesFromUrl() {
   return files
 }
 
-export function PlaygroundProvider(props: PropsWithChildren) {
+export default function PlaygroundProvider(props: PropsWithChildren) {
   const { children } = props
   const [files, setFiles] = useState<Files>(getFilesFromUrl() || initFiles)
   const [selectedFileName, setSelectedFileName] = useState('App.tsx')
@@ -79,11 +68,6 @@ export function PlaygroundProvider(props: PropsWithChildren) {
     updateFileName,
 
   }), [files, selectedFileName, setSelectedFileName, setFiles, addFile, removeFile, updateFileName])
-
-  // useEffect(() => {
-  //   const hash = JSON.stringify(files)
-  //   window.location.hash = encodeURIComponent(hash)
-  // }, [files])
 
   useEffect(() => {
     const hash = compress(JSON.stringify(files))

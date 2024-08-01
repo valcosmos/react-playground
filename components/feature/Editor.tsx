@@ -1,7 +1,10 @@
-import type { editor } from 'monaco-editor'
+'use client'
 
+import type { editor } from 'monaco-editor'
 import type { EditorProps, OnMount } from '@monaco-editor/react'
 import MonacoEditor from '@monaco-editor/react'
+import { useTheme } from 'next-themes'
+import { LoaderIcon } from 'lucide-react'
 import { createATA } from '@/utils/ata'
 
 export interface EditorFile {
@@ -18,17 +21,11 @@ export interface CEditorProps {
 
 export default function Editor(props: CEditorProps) {
   const { file, onChange, options } = props
+  const { theme } = useTheme()
 
-  // const code = `export default function App() {
-  //   return <div>xxx</div>
-  //   }
-  //   `
   const handleEditorMount: OnMount = (editor, monaco) => {
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyJ, () => {
       editor.getAction('editor.action.formatDocument')?.run()
-
-      // let actions = editor.getSupportedActions().map((a) => a.id)
-      // console.log(actions)
     })
 
     monaco.languages.typescript.typescriptDefaults.setCompilerOptions({
@@ -50,9 +47,13 @@ export default function Editor(props: CEditorProps) {
     <MonacoEditor
       height="100%"
       path={file.name}
+      theme={`vs-${theme}`}
       language={file.language}
       onMount={handleEditorMount}
       onChange={onChange}
+      loading={
+        <LoaderIcon className="animate-spin" size={30} />
+      }
       value={file.value}
       options={{
         fontSize: 14,

@@ -1,18 +1,13 @@
 import React, { useContext } from 'react'
 import { debounce } from 'es-toolkit'
+import dynamic from 'next/dynamic'
 import FileNameList from './FileNameList'
 import type { CEditorProps } from './Editor'
-import Editor from './Editor'
 import { PlaygroundContext } from './PlaygroundContext'
 
-export default function CodeEditor() {
-  // const file = {
-  //   name: 'guang.tsx',
-  //   // value: 'import lodash from "lodash";\n\nconst a = <div>Hello world</div>',
-  //   value: 'const a = <div>Hello world</div>',
-  //   language: 'typescript'
-  // }
+const Editor = dynamic(() => import('./Editor'), { ssr: false })
 
+export default function CodeEditor() {
   const { files, setFiles, selectedFileName } = useContext(PlaygroundContext)
 
   if (!files)

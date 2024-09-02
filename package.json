@@ -27,7 +27,7 @@
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "@swc/wasm-web": "^1.7.11",
-    "lucide-react": "^0.428.0",
+    "lucide-react": "^0.438.0",
     "monaco-editor": "^0.50.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",

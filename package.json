@@ -28,7 +28,7 @@
     "jszip": "^3.10.1",
     "@swc/wasm-web": "^1.7.11",
     "lucide-react": "^0.438.0",
-    "monaco-editor": "^0.50.0",
+    "monaco-editor": "^0.51.0",
     "next": "14.2.5",
     "next-themes": "^0.3.0",
     "react": "^18",

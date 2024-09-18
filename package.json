@@ -26,7 +26,7 @@
     "fflate": "^0.8.2",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
-    "@swc/wasm-web": "^1.7.11",
+    "@swc/wasm-web": "^1.7.26",
     "lucide-react": "^0.439.0",
     "monaco-editor": "^0.50.0",
     "next": "14.2.5",

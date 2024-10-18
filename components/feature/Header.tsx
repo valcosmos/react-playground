@@ -1,13 +1,13 @@
-import Image from 'next/image'
-import { DownloadIcon, MoonIcon, Share, SunIcon } from 'lucide-react'
-import { useContext } from 'react'
+import { downloadFiles } from '@/utils/utils'
 import copy from 'copy-to-clipboard'
-import { toast } from 'sonner'
+import { DownloadIcon, MoonIcon, Share, SunIcon } from 'lucide-react'
+import Image from 'next/image'
 import { useTheme } from 'next-themes'
+import { useContext } from 'react'
+import { toast } from 'sonner'
 import logoSvg from '../../icons/logo.svg'
 import { Button } from '../ui/button'
 import { PlaygroundContext } from './PlaygroundContext'
-import { downloadFiles } from '@/utils/utils'
 
 export default function Header() {
   const { files } = useContext(PlaygroundContext)

@@ -1,11 +1,11 @@
 'use client'
 
 import type { PropsWithChildren } from 'react'
-import { useEffect, useMemo, useState } from 'react'
 import type { Files, Theme } from './PlaygroundContext'
-import { PlaygroundContext } from './PlaygroundContext'
-import { compress, fileName2Language, uncompress } from '@/utils/utils'
 import { initFiles } from '@/utils/files'
+import { compress, fileName2Language, uncompress } from '@/utils/utils'
+import { useEffect, useMemo, useState } from 'react'
+import { PlaygroundContext } from './PlaygroundContext'
 
 function getFilesFromUrl() {
   let files: Files | undefined

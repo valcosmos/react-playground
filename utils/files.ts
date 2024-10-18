@@ -1,13 +1,13 @@
+import type { Files } from '@/components/feature/PlaygroundContext'
+import { app } from '@/template/app'
+import { css } from '@/template/css'
+import { main } from '@/template/main'
+import { map } from '@/template/map'
 // import importMap from '../template/import-map.json?raw'
 // import AppCss from '../template/App.css?raw'
 // import App from '../template/App.tsx?raw'
 // import main from '../template/main.tsx?raw'
 import { fileName2Language } from './utils'
-import { main } from '@/template/main'
-import type { Files } from '@/components/feature/PlaygroundContext'
-import { app } from '@/template/app'
-import { css } from '@/template/css'
-import { map } from '@/template/map'
 
 // app 文件名
 export const APP_COMPONENT_FILE_NAME = 'App.tsx'

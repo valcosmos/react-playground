@@ -1,10 +1,10 @@
-import { useContext, useEffect, useRef, useState } from 'react'
+import { IMPORT_MAP_FILE_NAME } from '@/utils/files'
 import { debounce } from 'es-toolkit'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { PlaygroundContext } from '../PlaygroundContext'
 // import Editor from '../Editor'
 import Message from '../Message'
 import { iframeStr } from './iframe'
-import { IMPORT_MAP_FILE_NAME } from '@/utils/files'
 
 interface MessageData {
   data: {
@@ -17,7 +17,7 @@ export default function Preview() {
   const { files } = useContext(PlaygroundContext)
   // const [compiledCode, setCompiledCode] = useState('')
 
-  const compilerWorkerRef = useRef<Worker>()
+  const compilerWorkerRef = useRef<Worker | null>(null)
 
   const getIframeUrl = (compiledCode: string) => {
     if (!files)

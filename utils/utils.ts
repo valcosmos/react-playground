@@ -1,7 +1,7 @@
-import { strFromU8, strToU8, unzlibSync, zlibSync } from 'fflate'
-import JSZip from 'jszip'
-import saveAs from 'file-saver'
 import type { Files } from '@/components/feature/PlaygroundContext'
+import { strFromU8, strToU8, unzlibSync, zlibSync } from 'fflate'
+import saveAs from 'file-saver'
+import JSZip from 'jszip'
 
 export function fileName2Language(name: string) {
   const suffix = name.split('.').pop() || ''

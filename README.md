@@ -15,4 +15,3 @@ bun dev
 ```
 
 Open [http://localhost:3000/react-playground](http://localhost:3000/react-playground) with your browser to see the result.
-

@@ -1,11 +1,11 @@
 'use client'
 
-import type { editor } from 'monaco-editor'
 import type { EditorProps, OnMount } from '@monaco-editor/react'
-import MonacoEditor from '@monaco-editor/react'
-import { useTheme } from 'next-themes'
-import { LoaderIcon } from 'lucide-react'
+import type { editor } from 'monaco-editor'
 import { createATA } from '@/utils/ata'
+import MonacoEditor from '@monaco-editor/react'
+import { LoaderIcon } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
 export interface EditorFile {
   name: string

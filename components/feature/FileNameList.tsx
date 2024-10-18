@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from 'react'
-import { Tabs, TabsList, TabsTrigger } from '../ui/tabs'
-import { ScrollArea, ScrollBar } from '../ui/scroll-area'
-import { PlaygroundContext } from './PlaygroundContext'
-import { FileNameItem } from './FileNameItem'
 import { APP_COMPONENT_FILE_NAME, ENTRY_FILE_NAME, IMPORT_MAP_FILE_NAME } from '@/utils/files'
+import { useContext, useEffect, useState } from 'react'
+import { ScrollArea, ScrollBar } from '../ui/scroll-area'
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs'
+import { FileNameItem } from './FileNameItem'
+import { PlaygroundContext } from './PlaygroundContext'
 
 export default function FileNameList() {
   const { files, selectedFileName, addFile, setSelectedFileName, updateFileName, removeFile } = useContext(PlaygroundContext)

@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import type { CEditorProps } from './Editor'
 import { debounce } from 'es-toolkit'
 import dynamic from 'next/dynamic'
+import React, { useContext } from 'react'
 import FileNameList from './FileNameList'
-import type { CEditorProps } from './Editor'
 import { PlaygroundContext } from './PlaygroundContext'
 
 const Editor = dynamic(() => import('./Editor'), { ssr: false })

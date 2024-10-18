@@ -1,5 +1,5 @@
-import { createContext } from 'react'
 import type { CEditorProps } from './Editor'
+import { createContext } from 'react'
 
 export interface Files {
   [key: string]: CEditorProps['file']

@@ -1,11 +1,10 @@
 'use client'
 
 import { Allotment } from 'allotment'
-import 'allotment/dist/style.css'
-import { useContext } from 'react'
-import Header from './Header'
 import CodeEditor from './CodeEditor'
+import Header from './Header'
 import Preview from './preview/Preview'
+import 'allotment/dist/style.css'
 
 export default function ReactPlayground() {
   return (

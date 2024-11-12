@@ -55,7 +55,9 @@ export default function Preview() {
 
   useEffect(() => {
     if (!compilerWorkerRef.current) {
-      compilerWorkerRef.current = new Worker(new URL('./compiler', import.meta.url))
+      compilerWorkerRef.current = new Worker(new URL('./compiler.ts', import.meta.url), {
+        type: 'module',
+      })
       compilerWorkerRef.current.addEventListener('message', ({ data }) => {
         if (data.type === 'COMPILED_CODE') {
           setIframeUrl(getIframeUrl(data.data))

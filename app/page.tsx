@@ -1,3 +1,5 @@
+'use client'
+
 import ReactPlayground from '@/components/feature/ReactPlayground'
 import dynamic from 'next/dynamic'
 

@@ -1,9 +1,10 @@
 import { IMPORT_MAP_FILE_NAME } from '@/utils/files'
 import { debounce } from 'es-toolkit'
+import { LoaderIcon } from 'lucide-react'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { PlaygroundContext } from '../PlaygroundContext'
 // import Editor from '../Editor'
 import Message from '../Message'
+import { PlaygroundContext } from '../PlaygroundContext'
 import { iframeStr } from './iframe'
 
 interface MessageData {
@@ -87,17 +88,26 @@ export default function Preview() {
 
   return (
     <div style={{ height: '100%' }}>
-      <iframe
-        src={iframeUrl}
-        style={{
-          width: '100%',
-          height: '100%',
-          padding: 0,
-          border: 'none',
-        }}
-        // eslint-disable-next-line react-dom/no-unsafe-iframe-sandbox
-        sandbox="allow-scripts allow-same-origin"
-      />
+      {iframeUrl
+        ? (
+            <iframe
+              src={iframeUrl}
+              style={{
+                width: '100%',
+                height: '100%',
+                padding: 0,
+                border: 'none',
+              }}
+              // eslint-disable-next-line react-dom/no-unsafe-iframe-sandbox
+              sandbox="allow-scripts allow-same-origin"
+            />
+          )
+        : (
+            <div className="w-full h-full flex items-center justify-center">
+              <LoaderIcon className="animate-spin" size={30} />
+            </div>
+          )}
+
       <Message type="error" content={error} />
       {/* <Editor file={{
             name: 'dist.js',

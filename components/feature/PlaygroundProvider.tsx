@@ -1,6 +1,5 @@
 'use client'
 
-import type { PropsWithChildren } from 'react'
 import type { Files, Theme } from './PlaygroundContext'
 import { initFiles } from '@/utils/files'
 import { compress, fileName2Language, uncompress } from '@/utils/utils'
@@ -19,7 +18,7 @@ function getFilesFromUrl() {
   return files
 }
 
-export default function PlaygroundProvider(props: PropsWithChildren) {
+export default function PlaygroundProvider(props: { children: React.ReactNode }) {
   const { children } = props
   const [files, setFiles] = useState<Files>(getFilesFromUrl() || initFiles)
   const [selectedFileName, setSelectedFileName] = useState('App.tsx')

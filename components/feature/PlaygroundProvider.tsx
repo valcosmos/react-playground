@@ -18,8 +18,8 @@ function getFilesFromUrl() {
   return files
 }
 
-export default function PlaygroundProvider(props: { children: React.ReactNode }) {
-  const { children } = props
+export default function PlaygroundProvider({ children }: { children: React.ReactNode }) {
+  console.warn('PlaygroundProvider', children)
   const [files, setFiles] = useState<Files>(getFilesFromUrl() || initFiles)
   const [selectedFileName, setSelectedFileName] = useState('App.tsx')
   const [theme, setTheme] = useState<Theme>('light')
@@ -73,5 +73,5 @@ export default function PlaygroundProvider(props: { children: React.ReactNode })
     window.location.hash = hash
   }, [files])
 
-  return <PlaygroundContext.Provider value={ctxValue}>{children}</PlaygroundContext.Provider>
+  return <PlaygroundContext value={ctxValue}>{children}</PlaygroundContext>
 }
